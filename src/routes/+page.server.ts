@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ platform, fetch }) => {
 	const apiKey = platform?.env?.steam_webapi;
 
 	const res = await fetch(
-		`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=76561198330488355,76561199230005954,76561198350797439,76561198408781709,76561198999159532,76561198327601046`
+		`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=76561198330488355,76561199230005954,76561198350797439,76561198408781709,76561198999159532,76561198327601046,76561198984099599`
 	);
 
 	if (!res.ok) return json({ error: 'Steam API request failed' }, { status: 502 });
