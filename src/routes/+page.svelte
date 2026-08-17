@@ -47,7 +47,7 @@
 
 <div class="flex flex-col gap-4">
 	<section class="flex flex-col gap-3">
-		<h1 class="text-5xl font-bold tracking-wide uppercase lg:text-7xl">ChudClub</h1>
+		<h1 class="text-5xl font-bold tracking-wide uppercase lg:text-7xl">Chud<span class="bg-orange-500 px-1 rounded-2xl ml-2">Club</span></h1>
 		<p class="text-olive-600">
 			<span class="italic">"The chuddiest club of them all"</span> - {jacobName}
 		</p>
