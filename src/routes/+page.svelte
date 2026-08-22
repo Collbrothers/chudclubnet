@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Player } from './types.ts';
 	import Carousel from '$lib/Carousel.svelte';
+	import { resolve } from "$app/paths"
 
 	let { data } = $props();
-
 	let players = $derived.by(() => {
 		if (!data.players) {
 			throw new Error('Uh oh!');
@@ -18,16 +18,13 @@
 			.sort((a, b) => a.personaname.localeCompare(b.personaname));
 	});
 
-	let jacobName = $derived(
-		players.find((p) => p.steamid === '76561199230005954')?.personaname ?? 'Jacob'
-	);
-
-	let gustafName = $derived(
-		players.find((p) => p.steamid === '76561198999159532')?.personaname ?? 'Gustaf'
-	);
-
-	let aronName = $derived(
-		players.find((p) => p.steamid === '76561198350797439')?.personaname ?? 'Aron'
+	let quotes = $derived(
+			players
+					.filter(({ quote }) => quote)
+					.map(({ personaname, quote }) => ({
+						text: quote as string,
+						author: personaname
+					}))
 	);
 
 	function fadeInOnView(node: Element) {
@@ -47,14 +44,23 @@
 
 <div class="flex flex-col gap-4">
 	<section class="flex flex-col gap-3">
-		<h1 class="text-5xl font-bold tracking-wide uppercase lg:text-7xl">Chud<span class="bg-orange-500 px-1 rounded-2xl ml-2">Club</span></h1>
+		<h1 class="text-5xl font-bold tracking-wide uppercase lg:text-7xl">
+			ChudClub
+		</h1>
 		<p class="text-olive-600">
-			<span class="italic">"The chuddiest club of them all"</span> - {jacobName}
+			<span class="italic">"The chuddiest club of them all"</span> - {players[Math.floor(Math.random() * players.length)].personaname}
 		</p>
 		<div class="flex items-center gap-6">
+			{#if data.isLoggedIn}
+				<a class="rounded-lg bg-orange-500 px-6 py-3 text-white hover:bg-orange-400" href={resolve("/profile")}>View Profile</a>
+			{:else}
+				<a href={resolve("/login")}>
+					<img src="https://community.fastly.steamstatic.com/public/images/signinthroughsteam/sits_01.png" alt="Sign in with Steam" />
+				</a>
+			{/if}
 			<a
 				href="#guidelines"
-				class="rounded-lg bg-orange-500 px-6 py-3 text-white hover:bg-orange-400">Guidelines</a
+				class="rounded-lg ring ring-orange-500 px-6 py-3 text-white hover:bg-orange-500">Guidelines</a
 			>
 			<a href="#our-members" class="text-orange-400 underline hover:text-orange-700">
 				Our Members
@@ -62,26 +68,21 @@
 		</div>
 	</section>
 	<section>
+	</section>
+	{#if quotes.length > 0}
+	<section>
 		<Carousel
-			quotes={[
-				{ text: 'you are a girl?', author: aronName },
-				{ text: 'i am hot girl', author: gustafName },
-				{ text: 'i am EVIL', author: jacobName },
-				{
-					text: 'This club is not just a "club", it is a mindset, a mindset I am not smart enough for.',
-					author: 'Albert Einstein, a real historical quote, source: trust me.'
-				}
-			]}
+			quotes={quotes}
 		/>
 	</section>
+		{/if}
 	<section class="flex flex-col gap-3" id="guidelines">
 		<h2 class="text-4xl font-bold tracking-wide uppercase lg:text-6xl">Guidelines</h2>
 		<ul class="flex flex-col">
 			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
 				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">01</span>
 				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Embrace the CHUD mindset</span> — stop worrying about what normal
-					people think and fully commit to the CHUD lifestyle.
+					<span class="font-semibold">Commit to the CHUD mindset</span> — add "ChudClub" before or after you steam name.
 				</p>
 			</li>
 			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
@@ -152,7 +153,7 @@
 					class="translate-y-4 opacity-0 transition-all duration-500 ease-out"
 				>
 					<a
-						href={player.profileurl}
+						href={resolve("/profile/[id]", { id: player.steamid })}
 						target="_blank"
 						rel="noopener noreferrer"
 						class="group relative flex flex-col items-center gap-3 rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-colors hover:border-orange-500"

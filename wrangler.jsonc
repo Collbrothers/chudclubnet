@@ -18,7 +18,15 @@
 	"cache": {
 		"enabled": true
 	},
-	"upload_source_maps": true
+	"upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "chudclubnet_db",
+			"database_name": "chudclubnet-db",
+			"database_id": "45707d8c-5a4d-4da6-8f6f-b9fe1119f4df",
+			"migrations_dir": "drizzle"
+		}
+	]
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

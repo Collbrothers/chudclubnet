@@ -4,4 +4,6 @@ export interface Player {
 	timecreated: number;
 	avatarfull: string;
 	steamid: string;
+	quote: string | null;
+	description: string | null;
 }
