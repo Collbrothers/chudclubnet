@@ -6,7 +6,7 @@
 	let { data } = $props();
 	let players = $derived.by(() => {
 		if (!data.players) {
-			return []:
+			return [];
 		}
 
 		return data.players
