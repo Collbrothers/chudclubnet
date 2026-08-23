@@ -3,7 +3,8 @@ import type { PageServerLoad, Actions } from './$types';
 import { users } from '../../db/schema';
 import { eq } from 'drizzle-orm';
 
-export const load: PageServerLoad = async ({ locals, platform }) => {
+export const load: PageServerLoad = async ({ locals, platform, setHeaders }) => {
+	setHeaders({ 'cache-control': 'private, no-store' });
 	if (!locals.user) throw redirect(302, '/login');
 	if (!locals.user.isAdmin) throw error(403, 'Not authorized');
 

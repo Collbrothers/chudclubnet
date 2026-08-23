@@ -16,7 +16,7 @@
 		"enabled": true
 	},
 	"cache": {
-		"enabled": true
+		"enabled": false
 	},
 	"upload_source_maps": true,
 	"d1_databases": [

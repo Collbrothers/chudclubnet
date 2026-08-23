@@ -3,7 +3,8 @@ import { users } from '../db/schema.ts';
 import { eq } from 'drizzle-orm';
 import { error, json } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ platform, locals }) => {
+export const load: PageServerLoad = async ({ platform, locals, setHeaders }) => {
+	setHeaders({ 'cache-control': 'private, no-store' });
 	const apiKey = platform?.env?.steam_webapi;
 	const acceptedUsers = await locals.db.select().from(users).where(eq(users.accepted, true));
 	if (acceptedUsers.length === 0) return { players: [], isLoggedIn: !!locals.user };

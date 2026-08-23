@@ -4,7 +4,8 @@ import { users } from "../../db/schema";
 import { eq } from 'drizzle-orm';
 
 
-export const load: PageServerLoad = ({ locals }) => {
+export const load: PageServerLoad = ({ locals, setHeaders }) => {
+	setHeaders({ 'cache-control': 'private, no-store' });
 	if (!locals.user) {
 		throw redirect(302, '/login');
 	}

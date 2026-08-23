@@ -4,7 +4,8 @@ import { and, eq } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
 import type { Player } from '../../types.ts';
 
-export const load: PageServerLoad = async ({ params, locals, platform }) => {
+export const load: PageServerLoad = async ({ params, locals, platform, setHeaders }) => {
+	setHeaders({ 'cache-control': 'private, no-store' });
 	const player =  await locals.db.select().from(users).where(and(eq(users.accepted, true),eq(users.steamId, params.id)));
 	const apiKey = platform?.env?.steam_webapi;
 
