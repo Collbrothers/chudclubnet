@@ -10,7 +10,7 @@ export async function GET({ locals }) {
 	const urls = [
 		{ loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
 		...acceptedUsers.map((player) => ({
-			loc: `${baseUrl}/profile/${player.steam_id}`,
+			loc: `${baseUrl}/profile/${player.steamId}`,
 			priority: '0.7',
 			changefreq: 'weekly'
 		}))
