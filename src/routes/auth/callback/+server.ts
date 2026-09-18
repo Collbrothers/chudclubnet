@@ -40,11 +40,14 @@ export async function GET({ url, locals, platform, cookies }) {
 
 	const sessionId = crypto.randomUUID();
 	const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
-	await locals.db.insert(sessions).values({
-		id: sessionId,
-		steamId,
-		expiresAt
-	}).onConflictDoNothing();
+	await locals.db
+		.insert(sessions)
+		.values({
+			id: sessionId,
+			steamId,
+			expiresAt
+		})
+		.onConflictDoNothing();
 
 	cookies.set('session', sessionId, {
 		path: '/',

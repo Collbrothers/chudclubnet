@@ -1,0 +1,13 @@
+# ChudClub
+
+> ChudClub is a community site for chuds. Members log in with Steam and get a public profile page.
+
+## Pages
+
+- [Homepage](https://chudclub.net/): overview of ChudClub and its members
+- [Member profiles](https://chudclub.net/profile/{steamid}): public profile pages for accepted members, showing their Steam stats
+
+## Notes
+
+- Login is handled via Steam OpenID 2.0; there is no public registration form.
+- The /admin and /login routes are internal and not part of the public site content.

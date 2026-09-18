@@ -1,8 +1,7 @@
 import { redirect, fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
-import { users } from "../../db/schema";
+import { users } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-
 
 export const load: PageServerLoad = ({ locals, setHeaders }) => {
 	setHeaders({ 'cache-control': 'private, no-store' });
@@ -13,7 +12,7 @@ export const load: PageServerLoad = ({ locals, setHeaders }) => {
 		return { pending: true };
 	}
 	return { user: locals.user };
-}
+};
 
 export const actions = {
 	default: async ({ request, locals }) => {

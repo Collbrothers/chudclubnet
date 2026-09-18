@@ -20,7 +20,7 @@ declare global {
 
 		// interface Error {}
 		interface Locals {
-			db: DrizzleD1Database
+			db: DrizzleD1Database;
 			user: {
 				steamId: string;
 				displayName: string;
@@ -29,7 +29,7 @@ declare global {
 				quote: string | null;
 				description: string | null;
 				createdAt: string;
-			} | null
+			} | null;
 		}
 		// interface PageData {}
 		// interface PageState {}

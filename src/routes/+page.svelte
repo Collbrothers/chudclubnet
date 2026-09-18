@@ -1,46 +1,49 @@
 <script lang="ts">
 	import type { Player } from './types.ts';
 	import Carousel from '$lib/Carousel.svelte';
-	import { resolve } from "$app/paths"
+	import { resolve } from '$app/paths';
 
 	let { data } = $props();
 
 	const guidelines = [
 		{
-			title: "Commit to the CHUD mindset",
+			title: 'Commit to the CHUD mindset',
 			description: 'Add "ChudClub" before or after your steam name.'
 		},
 		{
-			title: "Master the CHUD look",
-			description: "Acquire the legendary CHUD appearance and make it instantly recognizable."
+			title: 'Master the CHUD look',
+			description: 'Acquire the legendary CHUD appearance and make it instantly recognizable.'
 		},
 		{
-			title: "Develop maximum goblin energy",
-			description: "Be weird, chaotic, and completely unapologetic about it."
+			title: 'Develop maximum goblin energy',
+			description: 'Be weird, chaotic, and completely unapologetic about it.'
 		},
 		{
-			title: "Study CHUD lore",
-			description: "Learn the history, traditions, memes, and important knowledge every CHUD should know."
+			title: 'Study CHUD lore',
+			description:
+				'Learn the history, traditions, memes, and important knowledge every CHUD should know.'
 		},
 		{
-			title: "Pass the CHUD test",
-			description: "Prove that you have what it takes by demonstrating your dedication to the CHUD lifestyle."
+			title: 'Pass the CHUD test',
+			description:
+				'Prove that you have what it takes by demonstrating your dedication to the CHUD lifestyle.'
 		},
 		{
-			title: "Find the CHUD Club",
-			description: "Locate the legendary CHUD Club and request membership."
+			title: 'Find the CHUD Club',
+			description: 'Locate the legendary CHUD Club and request membership.'
 		},
 		{
-			title: "Respect the CHUD code",
+			title: 'Respect the CHUD code',
 			description: "Once you're in, follow the rules and never betray your fellow CHUDs."
 		},
 		{
-			title: "Spread the CHUD spirit",
-			description: "Introduce other worthy people to the CHUD lifestyle."
+			title: 'Spread the CHUD spirit',
+			description: 'Introduce other worthy people to the CHUD lifestyle.'
 		},
 		{
-			title: "Achieve ultimate CHUD status",
-			description: "Once you've mastered everything above, you can officially call yourself a certified CHUD."
+			title: 'Achieve ultimate CHUD status',
+			description:
+				"Once you've mastered everything above, you can officially call yourself a certified CHUD."
 		}
 	];
 
@@ -59,13 +62,13 @@
 	});
 
 	let quotes = $derived(
-			players
-					.filter(({ quote }) => quote)
-					.map(({ personaname, quote }) => ({
-						text: quote as string,
-						author: personaname
-					}))
-	)
+		players
+			.filter(({ quote }) => quote)
+			.map(({ personaname, quote }) => ({
+				text: quote as string,
+				author: personaname
+			}))
+	);
 
 	function fadeInOnView(node: Element) {
 		const observer = new IntersectionObserver(
@@ -82,40 +85,56 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="canonical" href="https://chudclub.net/" />
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "ChudClub",
+			"url": "https://chudclub.net",
+			"description": "ChudClub, made by and for chuds. A place for us all to come together."
+		}
+	</script>
+</svelte:head>
 <div class="flex flex-col gap-4">
 	<section class="flex flex-col gap-3">
-		<h1 class="text-5xl font-bold tracking-wide uppercase lg:text-7xl">
-			ChudClub
-		</h1>
+		<h1 class="text-5xl font-bold tracking-wide uppercase lg:text-7xl">ChudClub</h1>
 		<p class="text-olive-600">
-			<span class="italic">"The chuddiest club of them all"</span> - {players[Math.floor(Math.random() * players.length)].personaname}
+			<span class="italic">"The chuddiest club of them all"</span> - {players[
+				Math.floor(Math.random() * players.length)
+			].personaname}
 		</p>
 		<div class="flex items-center gap-6">
 			{#if data.isLoggedIn}
-				<a class="rounded-lg bg-orange-500 px-6 py-3 text-white hover:bg-orange-400" href={resolve("/profile")}>View Profile</a>
+				<a
+					class="rounded-lg bg-orange-500 px-6 py-3 text-white hover:bg-orange-400"
+					href={resolve('/profile')}>View Profile</a
+				>
 			{:else}
-				<a href={resolve("/login")}>
-					<img src="https://community.fastly.steamstatic.com/public/images/signinthroughsteam/sits_01.png" alt="Sign in with Steam" />
+				<a href={resolve('/login')}>
+					<img
+						src="https://community.fastly.steamstatic.com/public/images/signinthroughsteam/sits_01.png"
+						alt="Sign in with Steam"
+					/>
 				</a>
 			{/if}
 			<a
 				href="#guidelines"
-				class="rounded-lg ring ring-orange-500 px-6 py-3 text-white hover:bg-orange-500">Guidelines</a
+				class="rounded-lg px-6 py-3 text-white ring ring-orange-500 hover:bg-orange-500"
+				>Guidelines</a
 			>
 			<a href="#our-members" class="text-orange-400 underline hover:text-orange-700">
 				Our Members
 			</a>
 		</div>
 	</section>
-	<section>
-	</section>
+	<section></section>
 	{#if quotes.length > 0}
-	<section>
-		<Carousel
-			quotes={quotes}
-		/>
-	</section>
-		{/if}
+		<section>
+			<Carousel {quotes} />
+		</section>
+	{/if}
 	<section class="flex flex-col gap-3" id="guidelines">
 		<h2 class="text-4xl font-bold tracking-wide uppercase lg:text-6xl">Guidelines</h2>
 		<ul class="flex flex-col">
@@ -126,7 +145,7 @@
 						<span class="font-semibold">{guideline.title}</span> — {guideline.description}
 					</p>
 				</li>
-				{/each}
+			{/each}
 		</ul>
 	</section>
 	<section class="flex flex-col gap-6" id="our-members">
@@ -139,7 +158,7 @@
 					class="translate-y-4 opacity-0 transition-all duration-500 ease-out"
 				>
 					<a
-						href={resolve("/profile/[id]", { id: player.steamid })}
+						href={resolve('/profile/[id]', { id: player.steamid })}
 						rel="noopener noreferrer"
 						class="group relative flex flex-col items-center gap-3 rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-colors hover:border-orange-500"
 					>

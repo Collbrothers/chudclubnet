@@ -17,7 +17,6 @@ export const load: PageServerLoad = async ({ platform, locals, setHeaders }) => 
 	// @ts-expect-error Too lazy to create interface
 	const rawPlayers: Player[] = data.response.players;
 
-
 	if (!rawPlayers || rawPlayers.length == 0) error(404, 'No such profile');
 
 	const players = rawPlayers.map((player) => {
