@@ -21,7 +21,6 @@ export const load: PageServerLoad = async ({ params, locals, platform, setHeader
 		const steamPlayer: Player = data.response.players[0];
 		steamPlayer["quote"] = player[0].quote;
 		steamPlayer["description"] = player[0].description;
-		console.log(steamPlayer);
 		return { steamPlayer, userId: locals.user?.steamId };
 	}
 

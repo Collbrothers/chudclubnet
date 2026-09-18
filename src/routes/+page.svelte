@@ -145,7 +145,7 @@
 					>
 						<img
 							alt="Profile picture of {player.personaname}"
-							src={player.avatarfull}
+							src={player.avatarmedium}
 							class="size-20 rounded-full border-2 border-neutral-800 group-hover:border-orange-500"
 						/>
 						<p class="w-full truncate text-center font-semibold">{player.personaname}</p>

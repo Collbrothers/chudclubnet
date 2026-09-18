@@ -3,6 +3,7 @@ export interface Player {
 	profileurl: string;
 	timecreated: number;
 	avatarfull: string;
+	avatarmedium: string;
 	steamid: string;
 	quote: string | null;
 	description: string | null;
