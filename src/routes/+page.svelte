@@ -4,6 +4,46 @@
 	import { resolve } from "$app/paths"
 
 	let { data } = $props();
+
+	const guidelines = [
+		{
+			title: "Commit to the CHUD mindset",
+			description: 'Add "ChudClub" before or after your steam name.'
+		},
+		{
+			title: "Master the CHUD look",
+			description: "Acquire the legendary CHUD appearance and make it instantly recognizable."
+		},
+		{
+			title: "Develop maximum goblin energy",
+			description: "Be weird, chaotic, and completely unapologetic about it."
+		},
+		{
+			title: "Study CHUD lore",
+			description: "Learn the history, traditions, memes, and important knowledge every CHUD should know."
+		},
+		{
+			title: "Pass the CHUD test",
+			description: "Prove that you have what it takes by demonstrating your dedication to the CHUD lifestyle."
+		},
+		{
+			title: "Find the CHUD Club",
+			description: "Locate the legendary CHUD Club and request membership."
+		},
+		{
+			title: "Respect the CHUD code",
+			description: "Once you're in, follow the rules and never betray your fellow CHUDs."
+		},
+		{
+			title: "Spread the CHUD spirit",
+			description: "Introduce other worthy people to the CHUD lifestyle."
+		},
+		{
+			title: "Achieve ultimate CHUD status",
+			description: "Once you've mastered everything above, you can officially call yourself a certified CHUD."
+		}
+	];
+
 	let players = $derived.by(() => {
 		if (!data.players) {
 			return [];
@@ -25,7 +65,7 @@
 						text: quote as string,
 						author: personaname
 					}))
-	);
+	)
 
 	function fadeInOnView(node: Element) {
 		const observer = new IntersectionObserver(
@@ -79,68 +119,14 @@
 	<section class="flex flex-col gap-3" id="guidelines">
 		<h2 class="text-4xl font-bold tracking-wide uppercase lg:text-6xl">Guidelines</h2>
 		<ul class="flex flex-col">
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">01</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Commit to the CHUD mindset</span> — add "ChudClub" before or after you steam name.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">02</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Master the CHUD look</span> — acquire the legendary CHUD appearance
-					and make it instantly recognizable.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">03</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Develop maximum goblin energy</span> — be weird, chaotic, and completely
-					unapologetic about it.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">04</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Study CHUD lore</span> — learn the history, traditions, memes, and
-					important knowledge every CHUD should know.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">05</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Pass the CHUD test</span> — prove that you have what it takes by
-					demonstrating your dedication to the CHUD lifestyle.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">06</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Find the CHUD Club</span> — locate the legendary CHUD Club and request
-					membership.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">07</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Respect the CHUD code</span> — once you're in, follow the rules
-					and never betray your fellow CHUDs.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">08</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Spread the CHUD spirit</span> — introduce other worthy people to
-					the CHUD lifestyle.
-				</p>
-			</li>
-			<li class="flex items-start gap-6 border-t border-b border-neutral-800 py-6">
-				<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">09</span>
-				<p class="text-lg leading-relaxed">
-					<span class="font-semibold">Achieve ultimate CHUD status</span> — once you've mastered everything
-					above, you can officially call yourself a certified CHUD.
-				</p>
-			</li>
+			{#each guidelines as guideline, i (i)}
+				<li class="flex items-start gap-6 border-t border-neutral-800 py-6">
+					<span class="w-12 shrink-0 text-3xl font-bold text-orange-400 tabular-nums">{i + 1}</span>
+					<p class="text-lg leading-relaxed">
+						<span class="font-semibold">{guideline.title}</span> — {guideline.description}
+					</p>
+				</li>
+				{/each}
 		</ul>
 	</section>
 	<section class="flex flex-col gap-6" id="our-members">
@@ -154,7 +140,6 @@
 				>
 					<a
 						href={resolve("/profile/[id]", { id: player.steamid })}
-						target="_blank"
 						rel="noopener noreferrer"
 						class="group relative flex flex-col items-center gap-3 rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-colors hover:border-orange-500"
 					>

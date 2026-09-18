@@ -6,7 +6,7 @@
 <section class="flex gap-8">
     <img src={data.steamPlayer.avatarfull} alt="Profile picture of {data.steamPlayer.personaname}"/>
     <div>
-        <h1 class="text-2xl font-bold text-orange-400">{data.steamPlayer.personaname}</h1>
+        <a href={data.steamPlayer.profileurl} target="_blank"><h1 class="text-2xl font-bold text-orange-400 hover:text-orange-500 underline">{data.steamPlayer.personaname}</h1></a>
         <p>{data.steamPlayer.description}</p>
     </div>
 </section>
